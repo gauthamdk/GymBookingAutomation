@@ -1,10 +1,16 @@
+#!./env/bin/python3
+
 import secret
+import time 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome("./chromedriver")  # Optional argument, if not specified will search path.
+option = webdriver.ChromeOptions()
+option.add_argument("headless")
+
+driver = webdriver.Chrome("./chromedriver" , options=option)  # Optional argument, if not specified will search path.
 driver.get('https://nyuad.dserec.com/online/capacity/');
 
 driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
@@ -26,19 +32,23 @@ push = driver.find_element_by_xpath("//*[@id=\"auth_methods\"]/fieldset/div[1]/b
 
 WebDriverWait(driver, 50).until(EC.frame_to_be_available_and_switch_to_it((By.TAG_NAME,'iframe')))
 
-driver.implicitly_wait(20)
+time.sleep(5)
 
-fitness = driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[1]/ul/li[7]/a").click()
+fitness = driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[1]/ul/li[7]/a[1]").click()
 
+#skipping 2 days
 driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
 
 driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
 
 # selecting time 
-# has to be different for some days 
-driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[2]/div[4]/div/div/div/div/div[3]").click()
-
-driver.implicitly_wait(3)
+time.sleep(5)
+driver.find_elements_by_xpath("//*[contains(text(), '4:')]")[1].click()
 
 # clicking reserve
-driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[2]/div/div/div[3]/div[2]/button[2]").click()
+time.sleep(5)
+driver.find_elements_by_xpath("//*[contains(text(), 'Confirm')]")[1].click()
+
+driver.implicitly_wait(10)
+
+print("Successfully booked")
