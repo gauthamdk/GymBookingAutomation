@@ -1,7 +1,7 @@
 #!./env/bin/python3
 
 import secret
-import time 
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 option = webdriver.ChromeOptions()
 option.add_argument("headless")
 
-driver = webdriver.Chrome("./chromedriver" , options=option)  # Optional argument, if not specified will search path.
+driver = webdriver.Chrome("./chromedriver", options=option)  # Optional argument, if not specified will search path.
 driver.get('https://nyuad.dserec.com/online/capacity/');
 
 driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
@@ -28,7 +28,7 @@ confirm_sso = driver.find_element_by_xpath("//*[@id=\"login\"]/button").click()
 
 WebDriverWait(driver, 50).until(EC.frame_to_be_available_and_switch_to_it((By.TAG_NAME,'iframe')))
 
-push = driver.find_element_by_xpath("//*[@id=\"auth_methods\"]/fieldset/div[1]/button").click()
+push = driver.find_element_by_xpath("//*[@id=\"auth_methods\"]/fieldset[1]/div[2]/button").click()
 
 WebDriverWait(driver, 50).until(EC.frame_to_be_available_and_switch_to_it((By.TAG_NAME,'iframe')))
 
@@ -43,7 +43,11 @@ driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/
 
 # selecting time 
 time.sleep(5)
-driver.find_elements_by_xpath("//*[contains(text(), '4:')]")[1].click()
+
+try:
+    driver.find_elements_by_xpath("//*[contains(text(), '4:')]")[1].click()
+except:
+    driver.find_elements_by_xpath("//*[contains(text(), '5:')]")[1].click()
 
 # clicking reserve
 time.sleep(5)
