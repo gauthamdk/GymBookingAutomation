@@ -8,9 +8,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 option = webdriver.ChromeOptions()
-# option.add_argument("headless")
+option.add_argument("headless")
 
-driver = webdriver.Chrome("./chromedriver") # , options=option)  # Optional argument, if not specified will search path.
+driver = webdriver.Chrome("./chromedriver", options=option)  # Optional argument, if not specified will search path.
 driver.get('https://nyuad.dserec.com/online/capacity/');
 
 driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
