@@ -1,3 +1,4 @@
 env/
 chromedriver
 secret.py
+.DS_Store

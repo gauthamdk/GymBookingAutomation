@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 option = webdriver.ChromeOptions()
 option.add_argument("headless")
 
-driver = webdriver.Chrome("./chromedriver", options=option)  # Optional argument, if not specified will search path.
-driver.get('https://nyuad.dserec.com/online/capacity/');
+driver = webdriver.Chrome("./chromedriver")#, options=option)  # Optional argument, if not specified will search path.
+driver.get('https://nyuad.dserec.com/online/capacity/')
 
 driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
 
@@ -34,14 +34,14 @@ WebDriverWait(driver, 50).until(EC.frame_to_be_available_and_switch_to_it((By.TA
 
 time.sleep(5)
 
-fitness = driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[1]/ul/li[8]/a").click()
+fitness = driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div[2]/div/div/div/div[1]/div[1]/ul/li[10]/a").click()
 
 #skipping 2 days
-driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
+driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
 
-driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div/div/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
+driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
 
-# selecting time 
+# selecting time
 time.sleep(5)
 
 try:
