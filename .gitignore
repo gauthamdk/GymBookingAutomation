@@ -2,3 +2,4 @@ env/
 chromedriver
 secret.py
 .DS_Store
+/__pycache__
