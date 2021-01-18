@@ -34,7 +34,7 @@ WebDriverWait(driver, 50).until(EC.frame_to_be_available_and_switch_to_it((By.TA
 
 time.sleep(5)
 
-fitness = driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div[2]/div/div/div/div[1]/div[1]/ul/li[10]/a").click()
+fitness = driver.find_element_by_xpath("/html/body/div/div/section/div/div/div/div[2]/div/div/div/div[1]/div[1]/ul/li[11]/a").click()
 
 #skipping 2 days
 driver.find_element_by_xpath("//*[@id=\"page\"]/div/section/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[3]/a[2]").click()
